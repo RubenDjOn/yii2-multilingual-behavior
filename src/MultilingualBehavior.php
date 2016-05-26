@@ -468,6 +468,10 @@ class MultilingualBehavior extends Behavior
         }
         $defaultTranslation = $this->getTranslation($this->defaultLanguage)->one();
 
+        if (!isset($defaultTranslation)) {
+            return null;
+        }
+
         return $defaultTranslation->{$name};
     }
 
