@@ -454,6 +454,7 @@ class MultilingualBehavior extends Behavior
      */
     public function hasLangAttribute($name)
     {
+
         return array_key_exists($name, $this->langAttributes);
     }
 
@@ -464,11 +465,13 @@ class MultilingualBehavior extends Behavior
     public function getLangAttribute($name)
     {
         if ($this->hasLangAttribute($name)&&isset($this->langAttributes[$name])) {
+
             return $this->langAttributes[$name];
         }
         $defaultTranslation = $this->getTranslation($this->defaultLanguage)->one();
 
-        if (!isset($defaultTranslation)) {
+        if ( ! isset($defaultTranslation) || ( ! isset($defaultTranslation->{$name}))) {
+
             return null;
         }
 
